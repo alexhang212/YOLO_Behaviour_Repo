@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction and installation &mdash; YOLO-Behaviour 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Image annotation" href="annotation.html" />
+    <link rel="prev" title="Welcome to YOLO-Behaviour’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            YOLO-Behaviour
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction and installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Image annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Model training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Visualization and inference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation and grid search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="human.html">Human in the loop methods</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">YOLO-Behaviour</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction and installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction-and-installation">
+<h1>Introduction and installation<a class="headerlink" href="#introduction-and-installation" title="Permalink to this heading"></a></h1>
+<p>Here you will install everything you need to start using the YOLO-Behaviour framework. It is mostly quite straightforward, but there are still a few things you will need to install.</p>
+<p>Before starting, there are <strong>3 main steps</strong> to follow:</p>
+<ol class="arabic">
+<li><p>Make sure you have cloned the <a class="reference external" href="https://github.com/alexhang212/YOLO_Behaviour_Repo">YOLO_Behaviour_Repo Repository</a> to your local computer. You also need to <strong>Change your currenct working directory</strong> to the <code class="docutils literal notranslate"><span class="pre">YOLO_Behaviour_Repo/</span></code> folder, since all the code will be ran relative to there.</p>
+<blockquote>
+<div><p>To change directory, you just need to use <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">Path/To/YOLO_Behaviour_Repo/</span></code> in your terminal.</p>
+</div></blockquote>
+</li>
+<li><p>You need to clone/ download the <a class="reference external" href="https://github.com/abewley/sort">SORT repository</a>, and put the folder inside the <code class="docutils literal notranslate"><span class="pre">Repositories/</span></code> folder.</p></li>
+<li><p>If you would like to work alongside the examples, also consider downloading the <a href="#id1"><span class="problematic" id="id2">`Example Data &lt;&gt;`_</span></a> and putting it under <code class="docutils literal notranslate"><span class="pre">Data/</span></code> folder.</p></li>
+</ol>
+<p><h1> Installation </h1></p>
+<p>Before starting, I recommend downloading  <a class="reference external" href="https://www.anaconda.com/download/success">Anaconda</a> to create a virtual environment for the project.</p>
+<p>There are two ways of installing everything, first is to do it using the requirements file, copy paste and run each line in your terminal (anaconda prompt if you are using windows):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">YOLO</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">YOLO</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>If the above doesn’t work, you can install the packages one by one:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">YOLO</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">YOLO</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">ultralytics</span><span class="o">==</span><span class="mf">8.0.143</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span><span class="o">==</span><span class="mf">0.21.0</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">filterpy</span><span class="o">==</span><span class="mf">1.4.5</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span><span class="o">==</span><span class="mf">1.3.2</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">natsort</span><span class="o">==</span><span class="mf">8.4.0</span>
+</pre></div>
+</div>
+<p>Here, we made a virtual environment called “YOLO” and installed the required packages. From now on, everytime you run the code, you need to activate the virtual environment by running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">YOLO</span></code>.</p>
+<p>After installing, you are now ready to proceed!</p>
+<p><h1> Summary of scripts in the repository </h1></p>
+<p>We provide a number of scripts to run the whole YOLO-Behaviour pipeline, everything is under the <code class="docutils literal notranslate"><span class="pre">code/</span></code> directory, and numbered.</p>
+<ol class="arabic simple">
+<li><p><strong>1_LabelStudio2YOLO.py</strong>: This script converts the LabelStudio annotations to YOLO format for training, refer to <a class="reference internal" href="annotation.html#annotation"><span class="std std-ref">Image annotation</span></a> for details on doing annotations</p></li>
+<li><p><strong>2_TrainYOLO.py</strong>: This script trains the YOLO model using the annotations from the previous step</p></li>
+<li><p><strong>3_VisualizeResults.py</strong>: This script is a quick script to visualize results for a given video and trained YOLO model</p></li>
+<li><p><strong>4_RunInference.py</strong>: This script runs the YOLO model on a given video and saves the results, either as a csv or as a pickle</p></li>
+<li><p><strong>5_SampleValidation.py</strong>: This script is a sample validation script for Siberian Jay eating detection, note that this script will need to be customized depending on the type of annotations you have!</p></li>
+<li><p><strong>6_SampleGridSearch.py</strong>: This script is a sample script for the grid search algorithm, to find the best hyperparameters for the YOLO model</p></li>
+<li><p><strong>7_HumanInLoopSample.py</strong>: This script provides an example to implement human in the loop, to first extract events using YOLO then manually validate.</p></li>
+</ol>
+<p>Each script can be ran by running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">Code/ScriptName.py</span></code> in your terminal. The scripts can take in arguments from the command line, or you can modify the script to change the arguments. The sample scripts are also provided to run 1 video at a time, so I highly encourage you to adapt the scripts to go through multiple videos!</p>
+<p>If you would like to run scripts using terminal arguments, you can use <code class="docutils literal notranslate"><span class="pre">-h</span></code> to see the arguments available:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">Code</span><span class="o">/</span><span class="mi">1</span><span class="n">_LabelStudio2YOLO</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>Alternatively, you can modify the script to change your own arguments/ paths. Here is an example from the <code class="docutils literal notranslate"><span class="pre">1_LabelStudio2YOLO.py</span></code> script:</p>
+<img alt="_images/SampleArgs.png" src="_images/SampleArgs.png" />
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to YOLO-Behaviour’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="annotation.html" class="btn btn-neutral float-right" title="Image annotation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex Chan Hoi Hang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

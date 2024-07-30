@@ -1,0 +1,4 @@
+.. _annotation:
+Image annotation
+============
+
