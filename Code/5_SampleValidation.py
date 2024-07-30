@@ -10,10 +10,9 @@ import pandas as pd
 sys.path.append("Repositories/sort/")
 from sort import Sort
 import numpy as np
-from natsort import natsorted
 from tqdm import tqdm
 import numpy as np
-from sklearn.metrics import ConfusionMatrixDisplay,classification_report,cohen_kappa_score,matthews_corrcoef,confusion_matrix
+from sklearn.metrics import classification_report,cohen_kappa_score,confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -159,7 +158,7 @@ if __name__ == "__main__":
     AllVideoNames = glob("%s/*.p"%InputVideoDir)
     AllBORISFiles = glob("%s/*.csv"%BORISDir)
 
-    ###Best f1-score:g
+    ###Best f1-score:g0
     BehavHyperParam = {'Eat': {'max_age': 21.0, 'min_hits': 1.0, 'iou_threshold': 0.2, 'min_duration': 1.0, 'YOLO_Threshold': 0.1}}
 
     ##optimized for Recall:

@@ -16,7 +16,8 @@ from tqdm import tqdm
 import numpy as np
 
 def PrepareVideos(InputVideo,DetectionDict,SubVideoDir,BehavHyperParam):
-    """First get events start stop"""
+    """First get events start stop, then output videos with the events/ tracks"""
+
     Classes = BehavHyperParam.keys()
 
     SortTrackerDict = {Behav:Sort(max_age=BehavHyperParam[Behav]["max_age"],
@@ -97,6 +98,7 @@ def PrepareVideos(InputVideo,DetectionDict,SubVideoDir,BehavHyperParam):
 
 
 def ManualReview(SubVideoDir):
+    """Manually review videos (True if False) and update csv"""
 
     TracksDF = pd.read_csv(os.path.join(SubVideoDir,"TracksInfo.csv"))
     AllSubVideos = natsorted([os.path.join(SubVideoDir,vid) for vid in os.listdir(SubVideoDir) if ".mp4" in vid])
@@ -153,7 +155,6 @@ if __name__ == "__main__":
     BehavHyperParam = {'Eat': {'max_age': 21.0, 'min_hits': 1.0, 'iou_threshold': 0.2, 'min_duration': 1.0, 'YOLO_Threshold': 0.1}}
     
 
-    # PrepareVideos(InputVideo,DetectionDict,SubVideoDir,BehavHyperParam)
+    PrepareVideos(InputVideo,DetectionDict,SubVideoDir,BehavHyperParam)
 
     ManualReview(SubVideoDir)
-

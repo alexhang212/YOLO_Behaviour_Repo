@@ -73,7 +73,7 @@ if __name__ == "__main__":
     args = ParseArgs()
 
     ## Custom Define arguments:
-    VidPath = "./Data/Jay_Sample.mp4"
+    VidPath = "./Data/JaySampleData/Jay_Sample.mp4"
     WeightPath = "./Data/Weights/JayBest.pt"
     StartFrame = 0
     TotalFrames = -1

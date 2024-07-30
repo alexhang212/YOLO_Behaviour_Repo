@@ -3,7 +3,6 @@
 
 import os
 from tqdm import tqdm
-from natsort import natsorted
 import cv2
 from ultralytics import YOLO
 import pandas as pd

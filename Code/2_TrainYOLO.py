@@ -15,15 +15,12 @@ def ParseArgs():
 
     parser.add_argument("--Model",
                         type=str,
-                        default= "n",
                         help="YOLO Model type varies with size, options: n (nano), s (small), m (medium), l (large), x (extra large)")
     parser.add_argument("--Config",
                         type=str,
-                        default="./Data/YOLO_Datasets/Jays_YOLO.yaml",
                         help="Path to YOLO Config file")
     parser.add_argument("--Epochs",
                         type=int,
-                        default=200,
                         help="Total number of epochs to train")
 
     arg = parser.parse_args()

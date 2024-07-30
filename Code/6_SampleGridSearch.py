@@ -10,10 +10,8 @@ import pandas as pd
 sys.path.append("Repositories/sort/")
 from sort import Sort
 import numpy as np
-from natsort import natsorted
 from tqdm import tqdm
 import numpy as np
-from sklearn.metrics import ConfusionMatrixDisplay,classification_report,cohen_kappa_score,matthews_corrcoef,confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
