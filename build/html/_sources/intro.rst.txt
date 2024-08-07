@@ -16,9 +16,9 @@ Before starting, there are **3 main steps** to follow:
 
 |start-h1| Installation |end-h1|
 
-Before starting, I recommend downloading  `Anaconda <https://www.anaconda.com/download/success>`_ to create a virtual environment for the project.
+Before starting, I recommend downloading  `Anaconda <https://www.anaconda.com/download/success>`_ to create a virtual environment for the project. After downloading anaconda, you will need launch anaconda prompt (if you are on windows) or just your terminal (for mac and linux). This will be where you run all of the code required in the rest of the demo.
 
-There are two ways of installing everything, first is to do it using the requirements file, copy paste and run each line in your terminal (anaconda prompt if you are using windows):
+There are two ways of installing everything, first is to do it using the requirements file. Copy paste and run each line in your terminal:
 
 .. code-block:: python
 
@@ -49,13 +49,13 @@ After installing, you are now ready to proceed!
 
 We provide a number of scripts to run the whole YOLO-Behaviour pipeline, everything is under the ``code/`` directory, and numbered. 
 
-1. **1_LabelStudio2YOLO.py**: This script converts the LabelStudio annotations to YOLO format for training, refer to :ref:`annotation` for details on doing annotations
-2. **2_TrainYOLO.py**: This script trains the YOLO model using the annotations from the previous step
-3. **3_VisualizeResults.py**: This script is a quick script to visualize results for a given video and trained YOLO model
-4. **4_RunInference.py**: This script runs the YOLO model on a given video and saves the results, either as a csv or as a pickle
-5. **5_SampleValidation.py**: This script is a sample validation script for Siberian Jay eating detection, note that this script will need to be customized depending on the type of annotations you have!
-6. **6_SampleGridSearch.py**: This script is a sample script for the grid search algorithm, to find the best hyperparameters for the YOLO model
-7. **7_HumanInLoopSample.py**: This script provides an example to implement human in the loop, to first extract events using YOLO then manually validate.
+* **1_LabelStudio2YOLO.py**: This script converts the LabelStudio annotations to YOLO format for training, refer to :ref:`annotation` for details on doing annotations
+* **2_TrainYOLO.py**: This script trains the YOLO model using the annotations from the previous step
+* **3_VisualizeResults.py**: This script is a quick script to visualize results for a given video and trained YOLO model
+* **4_RunInference.py**: This script runs the YOLO model on a given video and saves the results, either as a csv or as a pickle
+* **5_SampleValidation.py**: This script is a sample validation script for Siberian Jay eating detection, note that this script will need to be customized depending on the type of annotations you have!
+* **6_SampleGridSearch.py**: This script is a sample script for the grid search algorithm, to find the best hyperparameters for the YOLO model
+* **7_HumanInLoopSample.py**: This script provides an example to implement human in the loop, to first extract events using YOLO then manually validate.
 
 Each script can be ran by running ``python Code/ScriptName.py`` in your terminal. The scripts can take in arguments from the command line, or you can modify the script to change the arguments. The sample scripts are also provided to run 1 video at a time, so I highly encourage you to adapt the scripts to go through multiple videos!
 
