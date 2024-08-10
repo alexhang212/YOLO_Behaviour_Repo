@@ -39,3 +39,6 @@ extensions = [
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../src'))  # Adjust path as needed
+
+html_baseurl = 'https://alexhang212.github.io/YOLO_Behaviour_Repo/'
+

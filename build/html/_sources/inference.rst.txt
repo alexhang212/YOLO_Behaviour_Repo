@@ -80,7 +80,7 @@ Here are the columns:
     * BBox_xmax: The x coordinate of the bottom right corner
     * BBox_ymax: The y coordinate of the bottom right corner
 
-Next section, I will go through the model validation and optimization using grid search, for that I always use the pickle format reduce the need of converting between data structures. So if you would like to follow along the further steps, I would go for the pickle format. But the csv format is just much easier to deal with for any programming language you use when deploying ther framework.
+Next section, I will go through the model validation and optimization using grid search, for that I always use the pickle format reduce the need of converting between data structures. So if you would like to follow along the further steps, I would go for the pickle format. But the csv format is just much easier to deal with for any further programming language you use when deploying ther framework.
 
 
 .. |start-h1| raw:: html

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -9,15 +9,16 @@
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
   
+    <link rel="canonical" href="https://alexhang212.github.io/YOLO_Behaviour_Repo/inference.html" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -80,7 +81,7 @@
            <div itemprop="articleBody">
              
   <section id="visualization-and-inference">
-<h1>Visualization and inference<a class="headerlink" href="#visualization-and-inference" title="Permalink to this heading"></a></h1>
+<h1>Visualization and inference<a class="headerlink" href="#visualization-and-inference" title="Link to this heading"></a></h1>
 <p>Now that you have a model trained, its time to see how good the model is. I have prepared two scripts for this, first is just for visualizing, and the second one is for inference, where the results will be saved as a pickle or a csv.</p>
 <p><h1> Visualization </h1></p>
 <p>The script to visualize results is <code class="docutils literal notranslate"><span class="pre">Code/3_VisualizeResults.py</span></code>. This script requires the trained model and a sample video. Here are the arguments:</p>
@@ -141,7 +142,7 @@ If you are happy with the results, you can then proceed to run inference in a wh
 </ul>
 </dd>
 </dl>
-<p>Next section, I will go through the model validation and optimization using grid search, for that I always use the pickle format reduce the need of converting between data structures. So if you would like to follow along the further steps, I would go for the pickle format. But the csv format is just much easier to deal with for any programming language you use when deploying ther framework.</p>
+<p>Next section, I will go through the model validation and optimization using grid search, for that I always use the pickle format reduce the need of converting between data structures. So if you would like to follow along the further steps, I would go for the pickle format. But the csv format is just much easier to deal with for any further programming language you use when deploying ther framework.</p>
 </section>
 
 
