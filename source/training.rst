@@ -1,3 +1,8 @@
+.. _training:
+
+
+
+
 Model training
 ============
 After you have done some annotations and converted it into the YOLO format, you are now ready to train a YOLO model!

@@ -1,3 +1,8 @@
+.. _training:
+
+
+
+
 Model training
 ============
 After you have done some annotations and converted it into the YOLO format, you are now ready to train a YOLO model!
@@ -7,7 +12,7 @@ The training process is super simple, literally 4 lines of code, and I also prep
 
 |start-h1| GPU access |end-h1|
 
-But one thing to note before starting training is that ideally you should have a good GPU on your computer to train these models. GPU stands for "Graphical processing units", originally mostly optimized to run computer games, but turned out to be super useful for deep learning models. Basically you really want a good GPU to be able to train + process the YOLO model, because it will be multiple magnitudes faster.
+One thing to note before starting training is that ideally you should have a good GPU on your computer to train these models. GPU stands for "Graphical processing units", originally mostly optimized to run computer games, but turned out to be super useful for deep learning models. Basically you really want a good GPU to be able to train + process the YOLO model, because it will be multiple magnitudes faster.
 
 If you plan to start using computer vision/ deep learning in your research/ in the lab, I would recommend getting a gaming laptop/ gaming PC, with a good GPU for training and inference. Another option is to check with your institute/ university on whether they have a GPU cluster/ computing facility for you to train and deploy models. A lot of universities nowadays should have these facilities!
 

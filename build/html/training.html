@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -15,9 +15,9 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -80,11 +80,11 @@
            <div itemprop="articleBody">
              
   <section id="model-training">
-<h1>Model training<a class="headerlink" href="#model-training" title="Link to this heading"></a></h1>
+<span id="training"></span><h1>Model training<a class="headerlink" href="#model-training" title="Permalink to this heading"></a></h1>
 <p>After you have done some annotations and converted it into the YOLO format, you are now ready to train a YOLO model!</p>
 <p>The training process is super simple, literally 4 lines of code, and I also prepared a quick script to do it.</p>
 <p><h1> GPU access </h1></p>
-<p>But one thing to note before starting training is that ideally you should have a good GPU on your computer to train these models. GPU stands for “Graphical processing units”, originally mostly optimized to run computer games, but turned out to be super useful for deep learning models. Basically you really want a good GPU to be able to train + process the YOLO model, because it will be multiple magnitudes faster.</p>
+<p>One thing to note before starting training is that ideally you should have a good GPU on your computer to train these models. GPU stands for “Graphical processing units”, originally mostly optimized to run computer games, but turned out to be super useful for deep learning models. Basically you really want a good GPU to be able to train + process the YOLO model, because it will be multiple magnitudes faster.</p>
 <p>If you plan to start using computer vision/ deep learning in your research/ in the lab, I would recommend getting a gaming laptop/ gaming PC, with a good GPU for training and inference. Another option is to check with your institute/ university on whether they have a GPU cluster/ computing facility for you to train and deploy models. A lot of universities nowadays should have these facilities!</p>
 <p>Finally, if all else fails, you can also consider cloud GPU. A lot of companies now provide GPU resource for model training for a given price. You can consider services like <a class="reference external" href="&quot;https://colab.research.google.com/signup&quot;">google collab</a>, which should be easy to setup.</p>
 <p><h1> Model Training </h1>
