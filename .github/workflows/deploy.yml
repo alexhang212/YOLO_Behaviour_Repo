@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - gh-pages
-
+permissions:
+  contents: write
+  
 jobs:
   docs:
     runs-on: ubuntu-latest
@@ -20,7 +22,10 @@ jobs:
       - name: Sphinx build
         run: |
           sphinx-build source _build
-      - uses: actions/upload-artifact@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: Documentation
-          path: "$GITHUB_WORKSPACE/_build/html"
+          publish_branch: gh-pages2
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _build/
+          force_orphan: true
