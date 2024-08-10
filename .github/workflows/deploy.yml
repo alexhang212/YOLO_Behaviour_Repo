@@ -18,9 +18,9 @@ jobs:
     - name: Install Sphinx & Dependencies
       run: pip install sphinx sphinx_markdown_builder sphinx_rtd_theme
     - name: Build Documentation
-      run: cd "$GITHUB_WORKSPACE/doc" && make html
+      run: cd "$GITHUB_WORKSPACE/" && make html
 
     - uses: actions/upload-artifact@v3
       with:
         name: Documentation
-        path: "$GITHUB_WORKSPACE/doc/_build/html/"
+        path: "$GITHUB_WORKSPACE/build/html/"
