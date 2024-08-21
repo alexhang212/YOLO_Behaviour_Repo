@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image annotation &mdash; YOLO-Behaviour 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+    <link rel="canonical" href="https://alexhang212.github.io/YOLO_Behaviour_Repo/annotation.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Model training" href="training.html" />
+    <link rel="prev" title="Introduction and installation" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            YOLO-Behaviour
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction and installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Image annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Model training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Visualization and inference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation and grid search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="human.html">Human in the loop methods</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">YOLO-Behaviour</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Image annotation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/annotation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="image-annotation">
+<span id="annotation"></span><h1>Image annotation<a class="headerlink" href="#image-annotation" title="Link to this heading"></a></h1>
+<p>Here are some guidelines for image annotation and drawing bounding boxes for as training data. Here, I will take you through how to use an open-source tool called <a class="reference external" href="https://labelstud.io/">Label Studio</a>, but for training the YOLO-Behaviour framework, you can use any annotation tool of your choice, as long as your annotations follow the YOLO format.</p>
+<p>But be aware, a lot of these online labelling tools actually <strong>owns your data</strong> after you upload them, so make sure you check the terms and conditions before you use them!</p>
+<p>I’ve always used label studio because its fully open source and only saves the data locally, so the current page will guide you through step by step on how to use label studio to label your data.</p>
+<p>If you used your own annotation method, I also wrote a guide <a class="reference external" href="https://colab.research.google.com/drive/1Zbgx6gKKtF6Pu5YkI-n78baJ6PmysGgU?usp=sharing">here</a> on how to format annotations in the correct format and what is required.</p>
+<p><h1> Installing and launching label studio </h1>
+Installing label studio is straightforward, you can follow the <a class="reference external" href="https://labelstud.io/guide/install.html">official website</a> for installation instructions, but in general, if you have python + pip installed, you can just run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">label</span><span class="o">-</span><span class="n">studio</span>
+</pre></div>
+</div>
+<p>The current document was written for label studio version 1.7.3, in case label studio updates in the future and changes everything. If things in this page doesn’t work, this could be a possible reason, so you can install the same older version of label studio using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">label-studio==1.7.3</span></code> to properly follow this tutorial.</p>
+<p>After installing, you can launch the tool by simply running:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">label</span><span class="o">-</span><span class="n">studio</span>
+</pre></div>
+</div>
+<p>Which should launch the labelling tool on your default browser. If this is your first time, you will need to make an account with an email and password to protect your data.</p>
+<p><h1> Starting a labelling project </h1></p>
+<p>Click on “Create” on the top right to create a new project</p>
+<p>Give the project a name of your choice, and now there are two things you will have to do. First is to upload images, and the second is to set-up the labelling configurations.</p>
+<ol class="arabic simple">
+<li><p>Uploading your images. We provide a utility script to random sample frames from a given video input under <code class="docutils literal notranslate"><span class="pre">./Utils/SampleRandomFrames.py</span></code></p></li>
+</ol>
+<p>For example, to sample frames from the sample jay video, you can run this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### This will sample 10 random frames from Jay_Sample.mp4</span>
+<span class="n">python</span> <span class="n">Utils</span><span class="o">/</span><span class="n">SampleRandomFrames</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">Input</span> <span class="s2">&quot;Data/JaySampleData/Jay_Sample.mp4&quot;</span> <span class="o">--</span><span class="n">Output</span> <span class="s2">&quot;Data/JaySampleData/SampledFrames/&quot;</span> <span class="o">--</span><span class="n">Frames</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>After sampling images, you can then drag all the images into label studio under the “import” tab. If label studio is throwing an error saying the import is too big, you can work around it by relaunching label studio, but with an extra parameter, by running <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">DATA_UPLOAD_MAX_MEMORY_SIZE=100000000</span></code> in your terminal before you launch label studio.</p>
+<ol class="arabic simple" start="2">
+<li><p>Define the labelling set-up within label studio. Easiest would probably be choose the “Object Detection with Bounding Boxes” under templates, then modify the classes to your behaviours of interest. Here, since I am using the Jay dataset as a sample, I will define only 1 class, “eat”.</p></li>
+</ol>
+<img alt="_images/LabelStudioTemplate.png" src="_images/LabelStudioTemplate.png" />
+<img alt="_images/BBoxTemplate.png" src="_images/BBoxTemplate.png" />
+<p>If you are struggling with using the interface to define the task, or if something doesnt work, you can also use the “code” option, where you can customize your labelling interface. Here is a sample for one “Eat” class. To use this, you can just paste this under the “Code” section.</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">Image</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;image&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;$image&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">RectangleLabels</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span> <span class="na">toName</span><span class="o">=</span><span class="s">&quot;image&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">Label</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Eat&quot;</span> <span class="na">background</span><span class="o">=</span><span class="s">&quot;#FFA39E&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">RectangleLabels</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>After setting up the labelling setup, you can then start labelling by clicking the “Label all tasks” tab! If you want a random sample of images, you can also choose “Random sample” under the “settings” tab, to maximize variance in the dataset.</p>
+<img alt="_images/labellingscene.png" src="_images/labellingscene.png" />
+<p>Happy labelling!</p>
+<p><h1> Exporting your dataset </h1>
+After labelling, you have to export the annotations from label studio, then convert it to YOLO format to prepare for model training.</p>
+<p>To export your annotations, you need 1) the annotations, and 2) the images.</p>
+<p>To get the annotations, go to your project page, press export, then click on “JSON-MIN”.</p>
+<p>You might also notice there is an option to export as “YOLO” format directly, which can also work assuming you do not wish to split your dataset into train/val/test sets. So here, we still go for the JSON-MIN method to give us more control of the annotations.</p>
+<img alt="_images/Export.png" src="_images/Export.png" />
+<p>This should save a json file in your downloads folder. Copy this annotation file somewhere that make sense, you can even rename it.</p>
+<p>Then finally, you need to retrieve the images. Label studio annoyingly renames the images, so we need to look for where label studio stores the file. To find that, you have to scroll up in the console when launching label studio:</p>
+<img alt="_images/MediaLocation.png" src="_images/MediaLocation.png" />
+<p>If you go to this location on your computer, you can then get access to the images you want, and you can copy them to another folder (your own dataset folder).</p>
+<p>The image locations might differ between computers/ systems. One way to check that you can find the correct images is to open the exported json file above, then check the path of the first annotation.</p>
+<img alt="_images/LabelStudioJSON.png" src="_images/LabelStudioJSON.png" />
+<p>For example, on my laptop, the images were stored under <code class="docutils literal notranslate"><span class="pre">data/upload/1/</span></code>, so I would copy the <code class="docutils literal notranslate"><span class="pre">1/</span></code> folder to your dataset folder, but making sure you embedd the folder withint empty  <code class="docutils literal notranslate"><span class="pre">data/upload</span></code> folders, so that the images can be read correctly as a relative path.</p>
+<p>Finally, we need to convert this into a format that the package we use can read. I provided a script to do that, to convert label studio annotations into YOLO format, as well as splitting the dataset into a train, validation and test set.</p>
+<p>To do this you need to run the <code class="docutils literal notranslate"><span class="pre">/Code/1_LabelStudio2YOLO.py</span></code> script. Here are the parameters for the script:</p>
+<ul class="simple">
+<li><p>--Dataset: Path to the dataset folder, location where the images are stored</p></li>
+<li><p>--JSON: Path to the label studio JSON file</p></li>
+<li><p>--Output: Output folder for the YOLO dataset</p></li>
+</ul>
+<p>Here is an example to run this in the command line with the Jay sample dataset, which I stored under the <code class="docutils literal notranslate"><span class="pre">LabelStudio</span></code> folder in the sample.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">Code</span><span class="o">/</span><span class="mi">1</span><span class="n">_LabelStudio2YOLO</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">Dataset</span> <span class="s2">&quot;./Data/LabelsStudio&quot;</span> <span class="o">--</span><span class="n">JSON</span>  <span class="s2">&quot;./Data/LabelStudio/JayAnnotations.json&quot;</span> <span class="o">--</span><span class="n">Output</span> <span class="s2">&quot;./Data/YOLO_Datasets/Jay2&quot;</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction and installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="training.html" class="btn btn-neutral float-right" title="Model training" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex Chan Hoi Hang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
