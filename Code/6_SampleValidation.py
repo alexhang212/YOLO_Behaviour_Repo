@@ -15,6 +15,9 @@ import numpy as np
 from sklearn.metrics import classification_report,cohen_kappa_score,confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
+import json
+
+
 
 from glob import glob
 
@@ -33,7 +36,7 @@ def EventValidation(AllVideoNames,AllBORISFiles,BehavHyperParam):
         file = [filePath for filePath in AllBORISFiles if os.path.basename(vidPath).split(".")[0] in filePath][0]
 
 
-        ### Process YOLO predictions first##
+        ### Part 1: Process YOLO predictions first##
         TrackingOutList = []
         for frame,frameDict in DetectionDict.items():
             detectedClass = []
@@ -68,7 +71,7 @@ def EventValidation(AllVideoNames,AllBORISFiles,BehavHyperParam):
             PredList.append(len(tracks)) #append how many tracks
         
         
-        #####Get ground truth####
+        #####Part 2: Get ground truth####
         df = pd.read_csv(file)
 
         ###round time col to frame number
@@ -154,15 +157,14 @@ def EventValidation(AllVideoNames,AllBORISFiles,BehavHyperParam):
 if __name__ == "__main__":
     InputVideoDir = "./Data/JaySampleData/YOLO/"
     BORISDir = "./Data/JaySampleData/BORISAnnotations/"
+    ParamFile = "./Data/JaySampleData/Jay_Sample_HyperParameters.json"
+
 
     AllVideoNames = glob("%s/*.p"%InputVideoDir)
     AllBORISFiles = glob("%s/*.csv"%BORISDir)
 
-    ###Best f1-score:g0
-    BehavHyperParam = {'Eat': {'max_age': 21.0, 'min_hits': 1.0, 'iou_threshold': 0.2, 'min_duration': 1.0, 'YOLO_Threshold': 0.1}}
-
-    ##optimized for Recall:
-    # BehavHyperParam = {'Eat': {'max_age': 21, 'min_hits': 1, 'iou_threshold': 0.1, 'min_duration': 1, 'YOLO_Threshold': 0.1}}
+    ###Hyper parameters:
+    BehavHyperParam = json.load(open(ParamFile,"r"))
 
     OutReport,cohen_kappa = EventValidation(AllVideoNames,AllBORISFiles,BehavHyperParam)
 

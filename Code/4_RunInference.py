@@ -112,4 +112,4 @@ if __name__ == "__main__":
     OutputDir = os.path.dirname(VidPath) ##Can specify output directory here, default same dir as video
     print(OutputType)
     YOLOEventInference(VidPath,model,OutputDir,outputType = OutputType)
-
+    

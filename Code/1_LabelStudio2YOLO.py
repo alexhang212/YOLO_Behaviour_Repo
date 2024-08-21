@@ -106,6 +106,9 @@ if __name__ == "__main__":
     Dataset = AnnotationReader.LS_JSONReader(DatasetPath,JSONPath)
     Classes = Dataset.GetAllClasses()
 
+    for c,classes in enumerate(Classes):
+        print("Index: %s, Class: %s"%(c,classes))
+
 
     TotalData = len(Dataset.data)
     TotalIndex = list(range(TotalData))

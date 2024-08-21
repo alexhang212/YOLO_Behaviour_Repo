@@ -14,6 +14,8 @@ import numpy as np
 from natsort import natsorted
 from tqdm import tqdm
 import numpy as np
+import json
+import argparse
 
 def PrepareVideos(InputVideo,DetectionDict,SubVideoDir,BehavHyperParam):
     """First get events start stop, then output videos with the events/ tracks"""
@@ -94,7 +96,7 @@ def PrepareVideos(InputVideo,DetectionDict,SubVideoDir,BehavHyperParam):
             counter += 1
     
     OutDF = pd.DataFrame.from_dict(OutDFDict,orient = "index")
-    OutDF.to_csv(os.path.join(SubVideoDir,"TracksInfo.csv"))
+    OutDF.to_csv(os.path.join(SubVideoDir,"TracksInfo.csv"), index = False)
 
 
 def ManualReview(SubVideoDir):
@@ -110,12 +112,14 @@ def ManualReview(SubVideoDir):
         while True:
             cap = cv2.VideoCapture(AllSubVideos[idx])
             EndVideo = 0
+            FirstFrame = 1
 
             while True:
                 ret, frame = cap.read()
                 frame = cv2.putText(frame, "Approve (y) or Disapprove (n)", (20,25), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
                 frame = cv2.putText(frame, "Track Num: %s"%idx, (20,60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
                 if ret == True:
+                    FirstFrame = 0
                     cv2.imshow("window",frame)
                     if cv2.waitKey(1) & 0xFF == ord('y'):
                         ManualReviewList.append(True)
@@ -125,34 +129,66 @@ def ManualReview(SubVideoDir):
                         ManualReviewList.append(False)
                         EndVideo = 1
                         break
+                elif FirstFrame == 1: #if ret is False and its first frame
+                    EndVideo = 1
+                    break
                 else:
                     break
+                    
             if EndVideo == 1:
                 break
 
     TracksDF["ManualReview"] = ManualReviewList
 
-    TracksDF.to_csv(os.path.join(SubVideoDir,"TracksInfo.csv"))
+    TracksDF.to_csv(os.path.join(SubVideoDir,"TracksInfo.csv"), index = False)
 
 
+def ParseArgs():
+    parser = argparse.ArgumentParser()
 
-        
+    parser.add_argument("--Video",
+                    type=str,
+                    help="Input Video Path")
+    
+    parser.add_argument("--Detection",
+                        type=str,
+                        help="Path to the detections pickle file")
+    parser.add_argument("--Param",
+                        type=str,
+                        help="Path to the Hyperparameter json file")
+
+    arg = parser.parse_args()
+
+    return arg
+
 
 if __name__ == "__main__":
+    args = ParseArgs()
+
+    ##Custom define arguments
     InputVideo = "./Data/JaySampleData/Jay_Sample.mp4"
     InferencePickle = "./Data/JaySampleData/Jay_Sample_YOLO.pkl"
+    ParamFile = "./Data/JaySampleData/Jay_Sample_HyperParameters.json"
+    ####
+
+    InputVideo = args.Video if args.Video else InputVideo
+    InferencePickle = args.Detection if args.Detection else InferencePickle
+    ParamFile = args.Param if args.Param else ParamFile
+
+
 
     VideoName = os.path.basename(InputVideo).split(".")[0]
+    PickleBaseDir = os.path.dirname(InferencePickle)
+    SubVideoDir = os.path.join(PickleBaseDir,"%s_VideoChunks/"%VideoName)
 
     ###Output directory
-    SubVideoDir = "./Data/JaySampleData/%s_VideoChunks/"%VideoName
     if not os.path.exists(SubVideoDir):
         os.mkdir(SubVideoDir)
 
 
     DetectionDict = pickle.load(open(InferencePickle,"rb"))
 
-    BehavHyperParam = {'Eat': {'max_age': 21.0, 'min_hits': 1.0, 'iou_threshold': 0.2, 'min_duration': 1.0, 'YOLO_Threshold': 0.1}}
+    BehavHyperParam = json.load(open(ParamFile,"r"))
     
 
     PrepareVideos(InputVideo,DetectionDict,SubVideoDir,BehavHyperParam)
