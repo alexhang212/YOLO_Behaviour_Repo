@@ -1,3 +1,6 @@
+.. _inference:
+
+
 Visualization and inference
 ============
 
@@ -80,7 +83,67 @@ Here are the columns:
     * BBox_xmax: The x coordinate of the bottom right corner
     * BBox_ymax: The y coordinate of the bottom right corner
 
-Next section, I will go through the model validation and optimization using grid search, for that I always use the pickle format reduce the need of converting between data structures. So if you would like to follow along the further steps, I would go for the pickle format. But the csv format is just much easier to deal with for any further programming language you use when deploying ther framework.
+
+|start-h1| Event Detection |end-h1|
+After getting the detections from YOLO, the next step is to group these detections into events. For this, I use a simple tracking algorithm called `SORT <https://github.com/abewley/sort>`_ (Before running this step, make sure you cloned the SORT repositories under ``Reposositories``, see :ref:`install`). 
+You dont really need to know how the algorithm works, but basically it groups the detected boxes together based on physical and temporal proximity, then assign an ID to each "track". 
+For example, if you have bounding box detection of a bird flying across the screen, one might use a tracking algorithm to track and assign an ID to the bird across frames. 
+Here, we use the same type of algorithm to assign detections into "behavioural events".
+
+The script to do this is ``Code/5_GetEvents.py``, but before this,you will need to have the detections output as pickle format (see above), and also define the hyper-paramters for the alogrithm is a seperate json file.
+
+Here is a sample hyper parameter file, you can also find this in ``./Data/JaySampleData/Jay_Sample_HyperParameters.json``
+
+.. code-block:: json
+
+    {
+        "Eat": {
+            "min_duration": 1.0,
+            "YOLO_Threshold": 0.1,
+            "max_age": 21.0,
+            "min_hits": 1.0,
+            "iou_threshold": 0.2
+        }
+    }
+
+
+The json basically stores a python dictionary, with the first level being the name of the behaviour (It needs to be the same as the YOLO output), then each behaviour has a set of hyperparamters.
+    * min_duration: The minimum duration of a track to be considered an event
+    * YOLO_Threshold: The confidence threshold from YOLO to consider a detection
+    * max_age: The maximum number of frames a track can be inactive before being deleted
+    * min_hits: The minimum number of hits to create a track
+    * iou_threshold: The overlap in bounding boxes to consider them the same track
+
+The most important hyper-paramters are probably ``min_duration`` and ``YOLO_Threshold``, which will vary depending on the type of behaviour and video you have. 
+For example, an increased minimum duration or a higher YOLO threshold will be useful to filter out super short detections/ wrong detections that might be false positives, but ofcourse depends on the length of the behaviour of interest.
+
+Here, I defined the best hyperparamters for the Jay dataset, based on a grid search optimization (See next section) as an example. 
+If you are applying this to a new dataset, you can definitely play around with the parameters a little first to get a feel of how each paramter differs, since running a whole optimization algorithm might be a little daunting at first.
+
+To run the event detection on the Jay sample video, you can run this in the terminal:
+
+.. code-block:: python
+
+    python Code/5_GetEvents.py --Detection "./Data/JaySampleData/Jay_Sample_YOLO.pkl" --Param  "./Data/JaySampleData/Jay_Sample_HyperParam.json"
+
+The parameters are:
+    * \-\-Detection: Path to the YOLO detections in pickle format
+    * \-\-Param: Path to the hyperparameter json file
+
+After running the script, it will output the detected events as a csv file, with the same name as the video, in the video's directory. 
+
+.. image:: /images/EventsCSV.png
+
+The columns are the following:
+    * Behaviour: The name of behaviour
+    * StartFrame: Start frame of the behaviour
+    * EndFrame: End frame of the behaviour
+
+One could then use this information to further analysis, for example to calculate duration of events, or converting the frame numbers to actual time, based on the frame rate of the video. 
+
+
+Next section, I will go through the model validation and optimization using grid search, which might need a bit more customization and coding for new datasets, since it will depend on the format of your manual annotation!
+However, I do really encourage you to validate the model before you apply it to process data on a study (even if the detections looks really good from the videos!).
 
 
 .. |start-h1| raw:: html

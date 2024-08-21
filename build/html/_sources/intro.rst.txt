@@ -1,3 +1,7 @@
+.. _install:
+
+
+
 Introduction and installation
 ============
 
@@ -53,6 +57,9 @@ We provide a number of scripts to run the whole YOLO-Behaviour pipeline, everyth
 * **2_TrainYOLO.py**: This script trains the YOLO model using the annotations from the previous step
 * **3_VisualizeResults.py**: This script is a quick script to visualize results for a given video and trained YOLO model
 * **4_RunInference.py**: This script runs the YOLO model on a given video and saves the results, either as a csv or as a pickle
+
+.. ADD NEW SCRIPT
+
 * **5_SampleValidation.py**: This script is a sample validation script for Siberian Jay eating detection, note that this script will need to be customized depending on the type of annotations you have!
 * **6_SampleGridSearch.py**: This script is a sample script for the grid search algorithm, to find the best hyperparameters for the YOLO model
 * **7_HumanInLoopSample.py**: This script provides an example to implement human in the loop, to first extract events using YOLO then manually validate.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -16,9 +16,9 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -81,7 +81,7 @@
            <div itemprop="articleBody">
              
   <section id="visualization-and-inference">
-<h1>Visualization and inference<a class="headerlink" href="#visualization-and-inference" title="Link to this heading"></a></h1>
+<span id="inference"></span><h1>Visualization and inference<a class="headerlink" href="#visualization-and-inference" title="Permalink to this heading"></a></h1>
 <p>Now that you have a model trained, its time to see how good the model is. I have prepared two scripts for this, first is just for visualizing, and the second one is for inference, where the results will be saved as a pickle or a csv.</p>
 <p><h1> Visualization </h1></p>
 <p>The script to visualize results is <code class="docutils literal notranslate"><span class="pre">Code/3_VisualizeResults.py</span></code>. This script requires the trained model and a sample video. Here are the arguments:</p>
@@ -142,7 +142,62 @@ If you are happy with the results, you can then proceed to run inference in a wh
 </ul>
 </dd>
 </dl>
-<p>Next section, I will go through the model validation and optimization using grid search, for that I always use the pickle format reduce the need of converting between data structures. So if you would like to follow along the further steps, I would go for the pickle format. But the csv format is just much easier to deal with for any further programming language you use when deploying ther framework.</p>
+<p><h1> Event Detection </h1>
+After getting the detections from YOLO, the next step is to group these detections into events. For this, I use a simple tracking algorithm called <a class="reference external" href="https://github.com/abewley/sort">SORT</a> (Before running this step, make sure you cloned the SORT repositories under <code class="docutils literal notranslate"><span class="pre">Reposositories</span></code>, see <a class="reference internal" href="intro.html#install"><span class="std std-ref">Introduction and installation</span></a>).
+You dont really need to know how the algorithm works, but basically it groups the detected boxes together based on physical and temporal proximity, then assign an ID to each “track”.
+For example, if you have bounding box detection of a bird flying across the screen, one might use a tracking algorithm to track and assign an ID to the bird across frames.
+Here, we use the same type of algorithm to assign detections into “behavioural events”.</p>
+<p>The script to do this is <code class="docutils literal notranslate"><span class="pre">Code/5_GetEvents.py</span></code>, but before this,you will need to have the detections output as pickle format (see above), and also define the hyper-paramters for the alogrithm is a seperate json file.</p>
+<p>Here is a sample hyper parameter file, you can also find this in <code class="docutils literal notranslate"><span class="pre">./Data/JaySampleData/Jay_Sample_HyperParameters.json</span></code></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Eat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;min_duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;YOLO_Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;max_age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">21.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;min_hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;iou_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>The json basically stores a python dictionary, with the first level being the name of the behaviour (It needs to be the same as the YOLO output), then each behaviour has a set of hyperparamters.</dt><dd><ul class="simple">
+<li><p>min_duration: The minimum duration of a track to be considered an event</p></li>
+<li><p>YOLO_Threshold: The confidence threshold from YOLO to consider a detection</p></li>
+<li><p>max_age: The maximum number of frames a track can be inactive before being deleted</p></li>
+<li><p>min_hits: The minimum number of hits to create a track</p></li>
+<li><p>iou_threshold: The overlap in bounding boxes to consider them the same track</p></li>
+</ul>
+</dd>
+</dl>
+<p>The most important hyper-paramters are probably <code class="docutils literal notranslate"><span class="pre">min_duration</span></code> and <code class="docutils literal notranslate"><span class="pre">YOLO_Threshold</span></code>, which will vary depending on the type of behaviour and video you have.
+For example, an increased minimum duration or a higher YOLO threshold will be useful to filter out super short detections/ wrong detections that might be false positives, but ofcourse depends on the length of the behaviour of interest.</p>
+<p>Here, I defined the best hyperparamters for the Jay dataset, based on a grid search optimization (See next section) as an example.
+If you are applying this to a new dataset, you can definitely play around with the parameters a little first to get a feel of how each paramter differs, since running a whole optimization algorithm might be a little daunting at first.</p>
+<p>To run the event detection on the Jay sample video, you can run this in the terminal:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">Code</span><span class="o">/</span><span class="mi">5</span><span class="n">_GetEvents</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">Detection</span> <span class="s2">&quot;./Data/JaySampleData/Jay_Sample_YOLO.pkl&quot;</span> <span class="o">--</span><span class="n">Param</span>  <span class="s2">&quot;./Data/JaySampleData/Jay_Sample_HyperParam.json&quot;</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>The parameters are:</dt><dd><ul class="simple">
+<li><p>--Detection: Path to the YOLO detections in pickle format</p></li>
+<li><p>--Param: Path to the hyperparameter json file</p></li>
+</ul>
+</dd>
+</dl>
+<p>After running the script, it will output the detected events as a csv file, with the same name as the video, in the video’s directory.</p>
+<img alt="_images/EventsCSV.png" src="_images/EventsCSV.png" />
+<dl class="simple">
+<dt>The columns are the following:</dt><dd><ul class="simple">
+<li><p>Behaviour: The name of behaviour</p></li>
+<li><p>StartFrame: Start frame of the behaviour</p></li>
+<li><p>EndFrame: End frame of the behaviour</p></li>
+</ul>
+</dd>
+</dl>
+<p>One could then use this information to further analysis, for example to calculate duration of events, or converting the frame numbers to actual time, based on the frame rate of the video.</p>
+<p>Next section, I will go through the model validation and optimization using grid search, which might need a bit more customization and coding for new datasets, since it will depend on the format of your manual annotation!
+However, I do really encourage you to validate the model before you apply it to process data on a study (even if the detections looks really good from the videos!).</p>
 </section>
 
 

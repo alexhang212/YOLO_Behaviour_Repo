@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -16,9 +16,9 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -80,8 +80,30 @@
            <div itemprop="articleBody">
              
   <section id="human-in-the-loop-methods">
-<h1>Human in the loop methods<a class="headerlink" href="#human-in-the-loop-methods" title="Link to this heading"></a></h1>
-<p>Welcome to the introduction of your project documentation.</p>
+<h1>Human in the loop methods<a class="headerlink" href="#human-in-the-loop-methods" title="Permalink to this heading"></a></h1>
+<p>Finally I will showcase the human-in-the-loop or hybrid application for the YOLO-Behaviour framework, basically first using YOLO to extract events, then manually review if the detected events are correct.</p>
+<p>We will once again try this using the Jay sample video, where videos will be written then manually reviewed.</p>
+<p>To run the human in the loop script with the Siberian Jay data, you will need to run the following in the terminal:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">Code</span><span class="o">/</span><span class="mi">8</span><span class="n">_HumanInLoopSample</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">Video</span> <span class="s2">&quot;./Data/JaySampleData/Jay_Sample.mp4&quot;</span> <span class="o">--</span><span class="n">Detection</span>  <span class="s2">&quot;./Data/JaySampleData/Jay_Sample_YOLO.pkl&quot;</span> <span class="o">--</span><span class="n">Param</span> <span class="s2">&quot;./Data/JaySampleData/Jay_Sample_HyperParameters.json&quot;</span>
+</pre></div>
+</div>
+<p>Here are the arguments:</p>
+<ul class="simple">
+<li><p>--Video: Path to the sample video</p></li>
+<li><p>--Detection: Path to pickle file from the inference script (see <a class="reference internal" href="inference.html#inference"><span class="std std-ref">Visualization and inference</span></a>)</p></li>
+<li><p>--Param: Path to the hyperparameter json file</p></li>
+</ul>
+<p>After running the script, you will see videos being written of detected events in a folder in the same directory as the pickle file, and a window will pop up for manual review of behavioural events.
+Each event will be looped and played in the window, with a blue box for where YOLO detected the behaviour.</p>
+<img alt="_images/HumanInLoop.png" src="_images/HumanInLoop.png" />
+<p>Here are the keyboard controls:</p>
+<ul class="simple">
+<li><p>Y: To accept the detection as correct</p></li>
+<li><p>N: To reject the detection</p></li>
+</ul>
+<p>After going through every clip, a csv will be updated of the events, which will be outputted into the same folder where the videos are.</p>
+<img alt="_images/TracksCSV.png" src="_images/TracksCSV.png" />
+<p>The <code class="docutils literal notranslate"><span class="pre">ManualReview</span></code> column is then saves whether the event was correctly detected as <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> for further analysis.</p>
 </section>
 
 
