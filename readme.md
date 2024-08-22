@@ -5,7 +5,12 @@ Alex Hoi Hang Chan, Prasetia Putra, Harald Schupp, Johanna K√∂chling, Jana Stra√
 ## Description
 This repository contains code for the YOLO-Behaviour framework, a simple method for behavioural quantification in videos.
 
-Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behaviour_Repo/index.html) for full installation and implementation guidelines.
+Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behaviour_Repo/) for full installation and implementation guidelines, and the [preprint]() for detailed description of the method!
+
+![banner](./Images/Banner.png)
+
+
+
 
 ## Abstract
 
@@ -13,7 +18,7 @@ Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behavio
 
 
 ## Quick Start
-We provide a whole pipeline from data annotation to model training to inference. Here, we will run a quick demo inference visualization. Make sure you download the [sample dataset](), and place it under the `Data/` directory.
+We provide a whole pipeline from data annotation to model training to inference in the [Documentation](https://alexhang212.github.io/YOLO_Behaviour_Repo/). Here, we will run a quick demo inference visualization. Make sure you download the [sample dataset](), and place it under the `Data/` directory.
 
 ### Installation
 There are a series of required packages to run the pipeline. We recommend creating a [conda environment](https://www.anaconda.com/). 
@@ -33,6 +38,9 @@ After installation and downloading the sample dataset, run this in the terminal,
 python Code/3_VisualizeResults.py --Video "./Data/JaySampleData/Jay_Sample.mp4" --Weight  "./Data/Weights/JayBest.pt" --Start 0 --Frames -1
 
 ``
+
+## Citation
+
 
 ## Contact
 If you have any questions/ suggestions with the pipeline, or any additional instructions/ guidelines you would like to see in the documentation, feel free to leave a git issue or shoot me an email!
