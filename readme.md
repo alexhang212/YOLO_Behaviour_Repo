@@ -34,10 +34,10 @@ pip install -r requirements.txt
 ### Run Inference on sample data
 After installation and downloading the sample dataset, run this in the terminal, making sure that the current working directory is in `YOLO_Behaviour_Repo`. You can change your working directory by doing `cd /path/to/YOLO_Behaviour_Repo`
 
-``
+```
 python Code/3_VisualizeResults.py --Video "./Data/JaySampleData/Jay_Sample.mp4" --Weight  "./Data/Weights/JayBest.pt" --Start 0 --Frames -1
 
-``
+```
 
 ## Citation
 
