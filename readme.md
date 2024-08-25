@@ -1,6 +1,4 @@
 # YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos
-Alex Hoi Hang Chan, Prasetia Putra, Harald Schupp, Johanna Köchling, Jana Straßheim, Britta Renner, Julia Schroeder, William D. Pearse, Shinichi Nakagawa, Terry Burke, Michael Griesser, Andrea Meltzer, Saverio Lubrano, Fumihiro Kano
-
 
 ## Description
 This repository contains code for the YOLO-Behaviour framework, a simple method for behavioural quantification in videos.
