@@ -40,6 +40,21 @@ python Code/3_VisualizeResults.py --Video "./Data/JaySampleData/Jay_Sample.mp4" 
 ```
 
 ## Citation
+```
+@article {Chan2024YOLO,
+	author = {Chan, Alex Hoi Hang and Putra, Prasetia and Schupp, Harald and K{\"o}chling, Johanna and Stra{\ss}heim, Jana and Renner, Britta and Schroeder, Julia and Pearse, William D. and Nakagawa, Shinichi and Burke, Terry and Griesser, Michael and Meltzer, Andrea and Lubrano, Saverio and Kano, Fumihiro},
+	title = {YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos},
+	elocation-id = {2024.08.26.609387},
+	year = {2024},
+	doi = {10.1101/2024.08.26.609387},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2024/08/27/2024.08.26.609387},
+	eprint = {https://www.biorxiv.org/content/early/2024/08/27/2024.08.26.609387.full.pdf},
+	journal = {bioRxiv}
+}
+
+```
+
 
 
 ## Contact
