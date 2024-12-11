@@ -35,7 +35,3 @@ After going through every clip, a csv will be updated of the events, which will 
 The ``ManualReview`` column is then saves whether the event was correctly detected as ``True`` or ``False`` for further analysis.
 
 
-
-
-
-

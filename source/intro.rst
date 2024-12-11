@@ -15,7 +15,7 @@ Before starting, there are **3 main steps** to follow:
 
 2. You need to clone/ download the `SORT repository <https://github.com/abewley/sort>`_, and put the folder inside the ``Repositories/`` folder.
 
-3. If you would like to work alongside the examples, also consider downloading the `Example Data <>`_ and putting it under ``Data/`` folder.
+3. If you would like to work alongside the examples, also consider downloading the `Example Data <https://doi.org/10.17617/3.EZNKYV>`_ and putting it under ``Data/`` folder.
 
 
 |start-h1| Installation |end-h1|
