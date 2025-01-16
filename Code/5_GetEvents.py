@@ -18,6 +18,34 @@ import json
 import argparse
 
 
+def CSVtoDict(CSVFile):
+    """Convert csv output back to dictionary"""
+    DF = pd.read_csv(CSVFile)
+    
+    MaxFrame = DF["Frame"].max()
+    
+    OutDict = {}
+    
+    for i in range(MaxFrame):
+        FrameDict = {"Class":[],"conf":[],"bbox":[]}
+        
+        if i not in DF["Frame"].values:
+            OutDict[i] = FrameDict
+            continue
+    
+        SubDF = DF[DF["Frame"]==i]
+
+        for x in range(len(SubDF)):
+            FrameDict["Class"].append(SubDF["Behaviour"].values[x])
+            FrameDict["conf"].append(SubDF["Confidence"].values[x])
+            FrameDict["bbox"].append([SubDF["BBox_xmin"].values[x],SubDF["BBox_ymin"].values[x],SubDF["BBox_xmax"].values[x],SubDF["BBox_ymax"].values[x]])
+
+        OutDict[i] = FrameDict
+    
+    return OutDict
+    
+
+
 def GetEvents(Detections,BehavHyperParam):
 
     counter = 0
@@ -30,7 +58,10 @@ def GetEvents(Detections,BehavHyperParam):
         HyperParam = BehavHyperParam[behav]
         SortTracker = Sort(max_age=HyperParam["max_age"],min_hits=HyperParam["min_hits"],iou_threshold=HyperParam["iou_threshold"])
 
-        DetectionDict = pickle.load(open(Detections,"rb"))
+        if Detections.endswith(".csv"):
+            DetectionDict = CSVtoDict(Detections)
+        else:
+            DetectionDict = pickle.load(open(Detections,"rb"))
 
         TrackingOutList = []
         ### Process YOLO predictions ###
@@ -89,6 +120,7 @@ if __name__ == "__main__":
 
     ## Custom Define arguments:
     Detections = "./Data/JaySampleData/Jay_Sample_YOLO.pkl"
+    
     ParamFile = "./Data/JaySampleData/Jay_Sample_HyperParam.json"
 
     #######
@@ -98,6 +130,17 @@ if __name__ == "__main__":
 
 
     BehavHyperParam = json.load(open(ParamFile,"r"))
+    
+    ##Sample BehavHyperParam Dictionary:
+    # BehavHyperParam = {"Eat": {
+    #         "max_age": 21.0,
+    #         "min_hits": 1.0,
+    #         "iou_threshold": 0.2,
+    #         "min_duration": 1.0,
+    #         "YOLO_Threshold": 0.1
+    #     }
+    # }
+    
 
 
     OutDF = GetEvents(Detections,BehavHyperParam)
@@ -108,7 +151,4 @@ if __name__ == "__main__":
     
 
     
-
-
-
 

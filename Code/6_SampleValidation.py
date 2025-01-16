@@ -146,12 +146,7 @@ def EventValidation(AllVideoNames,AllBORISFiles,BehavHyperParam):
 
     OutReport = classification_report(GT_Data, Pred_Data, output_dict=False)
 
-    cohen_kappa = cohen_kappa_score(GT_Data, Pred_Data)
-
-    # MCC = matthews_corrcoef(GT_Data, Pred_Data)
-
-
-    return OutReport,cohen_kappa
+    return OutReport
 
 
 if __name__ == "__main__":
@@ -166,10 +161,9 @@ if __name__ == "__main__":
     ###Hyper parameters:
     BehavHyperParam = json.load(open(ParamFile,"r"))
 
-    OutReport,cohen_kappa = EventValidation(AllVideoNames,AllBORISFiles,BehavHyperParam)
+    OutReport = EventValidation(AllVideoNames,AllBORISFiles,BehavHyperParam)
 
     print(OutReport)
-    print("Cohen Kappa: %s"%cohen_kappa)
 
     
 

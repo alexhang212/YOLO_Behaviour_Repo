@@ -65,7 +65,7 @@ def YOLOEventInference(vid,model,OutputDir,outputType = "csv"):
 
         OutDict = pd.DataFrame.from_dict(DFDict,orient = "index")
         VideoName = os.path.basename(vid).split("." + vid.split(".")[-1])[0]
-        OutDict.to_csv(os.path.join(OutputDir,"%s_YOLO.csv"%VideoName))
+        OutDict.to_csv(os.path.join(OutputDir,"%s_YOLO.csv"%VideoName), index=False)
 
     elif outputType == "pickle":
         VideoName = os.path.basename(vid).split("." + vid.split(".")[-1])[0]
