@@ -16,7 +16,7 @@ One thing to note before starting training is that ideally you should have a goo
 
 If you plan to start using computer vision/ deep learning in your research/ in the lab, I would recommend getting a gaming laptop/ gaming PC, with a good GPU for training and inference. Another option is to check with your institute/ university on whether they have a GPU cluster/ computing facility for you to train and deploy models. A lot of universities nowadays should have these facilities!
 
-Finally, if all else fails, you can also consider cloud GPU. A lot of companies now provide GPU resource for model training for a given price. You can consider services like `google collab <"https://colab.research.google.com/signup">`_, which should be easy to setup.
+Finally, if all else fails, you can also consider cloud GPU. A lot of companies now provide GPU resource for model training for a given price. You can consider services like `google collab <https://colab.research.google.com/signup>`_, which should be easy to setup.
 
 
 |start-h1| Model Training |end-h1|
