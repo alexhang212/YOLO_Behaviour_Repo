@@ -9,9 +9,9 @@ Here are detailed documentation on how to implement the YOLO-Behaviour framework
 
 For any questions/ bugs to scripts, feel free to raise a github issue or contact me! (hoi-hang.chan[at]uni-konstanz.de)
 
-.. image:: /images/Banner.png
-
-
+Video Tutorial
+==========
+..  youtube:: s5RtqPKkhPI
 
 The Pipeline
 ==========

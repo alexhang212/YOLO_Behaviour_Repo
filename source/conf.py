@@ -32,6 +32,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',  # for Google style docstrings
     'sphinx.ext.viewcode',
+    "sphinxcontrib.youtube"
 ]
 
 

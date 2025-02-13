@@ -16,7 +16,7 @@ jobs:
         python-version: '3.x'
 
     - name: Install Sphinx & Dependencies
-      run: pip install sphinx sphinx_markdown_builder sphinx_rtd_theme
+      run: pip install sphinx sphinx_markdown_builder sphinx_rtd_theme sphinxcontrib-youtube
     - name: Build Documentation
       run: cd "$GITHUB_WORKSPACE/" && make html
 
