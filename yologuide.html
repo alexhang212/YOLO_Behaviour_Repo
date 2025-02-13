@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is YOLO-Behaviour appropriate for my study system? &mdash; YOLO-Behaviour 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="canonical" href="https://alexhang212.github.io/YOLO_Behaviour_Repo/yologuide.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2709fde1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction and installation" href="intro.html" />
+    <link rel="prev" title="Welcome to YOLO-Behaviour’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            YOLO-Behaviour
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Is YOLO-Behaviour appropriate for my study system?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction and installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Image annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Model training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Visualization and inference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation and grid search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="human.html">Human in the loop methods</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">YOLO-Behaviour</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Is YOLO-Behaviour appropriate for my study system?</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/yologuide.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="is-yolo-behaviour-appropriate-for-my-study-system">
+<span id="yologuide"></span><h1>Is YOLO-Behaviour appropriate for my study system?<a class="headerlink" href="#is-yolo-behaviour-appropriate-for-my-study-system" title="Link to this heading"></a></h1>
+<p>For any new computer vision method, it is important to figure out whether it is appropriate for your study system. While YOLO-Behaviour is super powerful and robust, it has a few major shortcomings that make it less appropriate for certain study systems compared to others. Here are a list of considerations you can think about before diving into a project and spending time annotating data:</p>
+<ol class="arabic simple">
+<li><p>Is the behaviour you want to detect visually distinguishable from a single image?</p></li>
+<li><p>Do you have sufficient images per behavioural class to train the model?</p></li>
+<li><p>Are the videos relatively consistent/ without major noise?</p></li>
+<li><p>Do you have (or can prepare) a validation dataset to ensure the model is detecting event appropriately?</p></li>
+</ol>
+<p>If the answers to the questions above are all YES, then you should be good to go. If not, I expanded on each point below, to help figure out whether this method is appropriate for your study system.</p>
+<p><h1> 1. Is the behaviour visually distinguishable? </h1>
+This is the most important thing to consider, and the major shortcoming of the method. The YOLO model only analyzes <strong>SINGLE IMAGES</strong>, and tries to detect a behaviour frame by frame. If the behaviour you want to detect has a temporal component, or is context dependent, or if even you cant tell from an image whether a behaviour is happening, then the model will likely also fail.</p>
+<p>For example, let’s say you would like to detect a pigeon spinning around as part of its courtship display. From the video, you will be able to see it turn around, but for YOLO, since it only takes in single frame inputs, every frame of this spinning behaviour will only look like a pigeon standing still or walking. This would be an example where <strong>temporal information</strong> is important, and YOLO-Behaviour might not be appropriate. For this task, methods that takes in video input (like DeepEthogram) or methods that first does keypoint annotation might be more appropriate.</p>
+<p>As a second example, let’s say you want to detect whether Siberian Jays are doing a submissive display or flying (This was a real example that was excluded in the manuscript because the method was not appropriate). The submissive display is a behaviour where the jay flaps their wing rapidly while screaming when sitting on the perch. In this case, this behaviour is very visually similar to the birds flying, and was easily confused with birds flying in and out of the frame. This is an example where the <strong>context matters</strong>, since which behaviour it is depends on what the bird is doing before and after this behaviour, or other cues (like audio).</p>
+<p>Hopefully these examples can give an idea of when the method might not work. Just remember all the model has is the single frame, and any <strong>visual features</strong> of the image. So anything that cannot be determined from the image alone, will likely not work.</p>
+<p><h1> 2. Do you have sufficient images per behavioural class? </h1>
+For any computer vision task, you need training data. YOLO-Behaviour is the same, with the requirement of around 1000-1500 frames for each case study explored in the manuscript. As a result, if you have a relatively rare behaviour (that only happened a few times), the model will struggle to learn. The rule of thumb is to have at least a 200-300 frames per behaviour, with a variation in contexts (not super similar frames). A lot of times, obtaining and choosing these frames might take more time than annotating the bounding boxes itself.</p>
+<p><h1> 3. Are the videos relatively consistent/ without major noise? </h1>
+I put this here, but this is a general rule for applying computer vision tools. Is your training data relatively similar to the final videos where you want to apply the model to? For example, if you trained a detector that detects chimpanzees in a zoo, you cannot expect the model to also work with chimpanzees in the jungle. For YOLO-Behaviour, the videos should be as clear as possible, having the subjects of interest in focus, with reasonable resolution. Computer vision tools are powerful, but it’s not magic. So ensure the data quality is of a certain level of standard, usually from common sense. Examples of bad quality videos include: super distorted videos; or subject of interest is blurry; or thermal drone footage where the subject of interest is 2 pixels wide; or underwater videos where waves or bubbles occlude the subjects most of the time etc. etc.</p>
+<p><h1> 4. Do you have a validation dataset ready? </h1>
+Finally, while it can be annoying, any new method applied to a new system should be validated to ensure no bias is introduced. For YOLO-Behaviour, in addition to the image training data, it is important to also prepare a validation dataset of a given amount of videos where you annotate the ground truth events (with tools like BORIS), to ensure the whole pipeline is working well. How much validation is needed will depend on what is “good enough” for your application, but I would make sure some validation is done. The accuracy of these models can be misleading when visualizing it on video (usually it looks good on video), but quantitative evaluation is essential.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to YOLO-Behaviour’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro.html" class="btn btn-neutral float-right" title="Introduction and installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex Chan Hoi Hang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
