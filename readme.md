@@ -5,11 +5,9 @@ Alex Hoi Hang Chan, Prasetia Putra, Harald Schupp, Johanna K√∂chling, Jana Stra√
 ## Description
 This repository contains code for the YOLO-Behaviour framework, a simple method for behavioural quantification in videos.
 
-Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behaviour_Repo/) for full installation and implementation guidelines, and the [preprint](https://www.biorxiv.org/content/10.1101/2024.08.26.609387v1) for detailed description of the method!
+Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behaviour_Repo/) for full installation and implementation guidelines, and the [paper](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14502) for detailed description of the method!
 
 ![banner](./Images/Banner.png)
-
-
 
 
 ## Abstract
@@ -41,18 +39,13 @@ python Code/3_VisualizeResults.py --Video "./Data/JaySampleData/Jay_Sample.mp4" 
 
 ## Citation
 ```
-@article {Chan2024YOLO,
-	author = {Chan, Alex Hoi Hang and Putra, Prasetia and Schupp, Harald and K{\"o}chling, Johanna and Stra{\ss}heim, Jana and Renner, Britta and Schroeder, Julia and Pearse, William D. and Nakagawa, Shinichi and Burke, Terry and Griesser, Michael and Meltzer, Andrea and Lubrano, Saverio and Kano, Fumihiro},
-	title = {YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos},
-	elocation-id = {2024.08.26.609387},
-	year = {2024},
-	doi = {10.1101/2024.08.26.609387},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/early/2024/08/27/2024.08.26.609387},
-	eprint = {https://www.biorxiv.org/content/early/2024/08/27/2024.08.26.609387.full.pdf},
-	journal = {bioRxiv}
+@article{chan2024yolo,
+  title={YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos},
+  author={Chan, Alex Hoi Hang and Putra, Prasetia and Schupp, Harald and K{\"o}chling, Johanna and Stra{\ss}heim, Jana and Renner, Britta and Schroeder, Julia and Pearse, William D and Nakagawa, Shinichi and Burke, Terry and others},
+  journal={Methods in Ecology and Evolution},
+  year={2024},
+  publisher={Wiley Online Library}
 }
-
 ```
 
 

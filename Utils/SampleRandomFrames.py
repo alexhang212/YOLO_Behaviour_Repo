@@ -59,4 +59,4 @@ if __name__ == "__main__":
 
     if not os.path.exists(OutDir):
         os.makedirs(OutDir)
-    SampleImages(InputVideo,OutDir)
+    SampleImages(InputVideo,OutDir, NumFrames)
