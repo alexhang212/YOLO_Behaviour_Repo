@@ -20,7 +20,7 @@ def SampleImages(InputVideo,OutDir, NumFrames):
 
     RandomFrames = random.sample(FrameNums,NumFrames)
 
-    for i in tqdm(range(NumFrames)):
+    for i in tqdm(range(TotalFrames)):
         ret,frame = cap.read()
 
         if ret == False:
@@ -53,9 +53,16 @@ def ParseArgs():
 
 
 if __name__ == "__main__":
+    args = ParseArgs()
+
     InputVideo = "./Data/JaySampleData/Jay_Sample.mp4"
     OutDir = "./Data/JaySampleData/RandomFrames"
     NumFrames = 100
+    
+    ####
+    InputVido = args.Input if args.Input else InputVideo
+    OutDir = args.Output if args.Output else OutDir
+    NumFrames = args.Frames if args.Frames else NumFrames
 
     if not os.path.exists(OutDir):
         os.makedirs(OutDir)
