@@ -5,7 +5,11 @@ Alex Hoi Hang Chan, Prasetia Putra, Harald Schupp, Johanna Köchling, Jana Stra�
 ## Description
 This repository contains code for the YOLO-Behaviour framework, a simple method for behavioural quantification in videos.
 
+<<<<<<< HEAD
 Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behaviour_Repo/) for full installation and implementation guidelines, and the [paper](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14502) for detailed description of the method!
+=======
+Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behaviour_Repo/) for full installation and implementation guidelines, and the [paper]([https://www.biorxiv.org/content/10.1101/2024.08.26.609387v1](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14502)) for detailed description of the method!
+>>>>>>> e1fb6943d6378eee9f585b0e3591607a08b4c1c7
 
 ![banner](./Images/Banner.png)
 
@@ -16,7 +20,7 @@ Please refer to the ["Documentation"](https://alexhang212.github.io/YOLO_Behavio
 
 
 ## Quick Start
-We provide a whole pipeline from data annotation to model training to inference in the [Documentation](https://alexhang212.github.io/YOLO_Behaviour_Repo/). Here, we will run a quick demo inference visualization. Make sure you download the [sample dataset](https://doi.org/10.17617/3.EZNKYV), and place it under the `Data/` directory.
+We provide a whole pipeline from data annotation to model training to inference in the [Documentation](https://alexhang212.github.io/YOLO_Behaviour_Repo/). Here, we will run a quick demo inference visualization. Make sure you download the [sample dataset](https://doi.org/10.17617/3.EZNKYV), and place it under the `Data/` directory. I also recorded a [video tutorial](https://youtu.be/s5RtqPKkhPI) that goes through the whole pipeline!
 
 ### Installation
 There are a series of required packages to run the pipeline. We recommend creating a [conda environment](https://www.anaconda.com/). 
@@ -39,12 +43,26 @@ python Code/3_VisualizeResults.py --Video "./Data/JaySampleData/Jay_Sample.mp4" 
 
 ## Citation
 ```
+<<<<<<< HEAD
 @article{chan2024yolo,
   title={YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos},
   author={Chan, Alex Hoi Hang and Putra, Prasetia and Schupp, Harald and K{\"o}chling, Johanna and Stra{\ss}heim, Jana and Renner, Britta and Schroeder, Julia and Pearse, William D and Nakagawa, Shinichi and Burke, Terry and others},
   journal={Methods in Ecology and Evolution},
   year={2024},
   publisher={Wiley Online Library}
+=======
+@article{https://doi.org/10.1111/2041-210X.14502,
+author = {Chan, Alex Hoi Hang and Putra, Prasetia and Schupp, Harald and Köchling, Johanna and Straßheim, Jana and Renner, Britta and Schroeder, Julia and Pearse, William D. and Nakagawa, Shinichi and Burke, Terry and Griesser, Michael and Meltzer, Andrea and Lubrano, Saverio and Kano, Fumihiro},
+title = {YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos},
+journal = {Methods in Ecology and Evolution},
+volume = {n/a},
+number = {n/a},
+pages = {},
+keywords = {animal behaviour, behavioural recognition, computer vision, machine learning},
+doi = {https://doi.org/10.1111/2041-210X.14502},
+url = {https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14502},
+eprint = {https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210X.14502}
+>>>>>>> e1fb6943d6378eee9f585b0e3591607a08b4c1c7
 }
 ```
 
