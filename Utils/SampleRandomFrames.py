@@ -60,7 +60,7 @@ if __name__ == "__main__":
     NumFrames = 100
     
     ####
-    InputVido = args.Input if args.Input else InputVideo
+    InputVideo = args.Input if args.Input else InputVideo
     OutDir = args.Output if args.Output else OutDir
     NumFrames = args.Frames if args.Frames else NumFrames
 
