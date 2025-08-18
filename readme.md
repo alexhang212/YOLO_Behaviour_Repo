@@ -39,12 +39,20 @@ python Code/3_VisualizeResults.py --Video "./Data/JaySampleData/Jay_Sample.mp4" 
 
 ## Citation
 ```
-@article{chan2024yolo,
-  title={YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos},
-  author={Chan, Alex Hoi Hang and Putra, Prasetia and Schupp, Harald and K{\"o}chling, Johanna and Stra{\ss}heim, Jana and Renner, Britta and Schroeder, Julia and Pearse, William D and Nakagawa, Shinichi and Burke, Terry and others},
-  journal={Methods in Ecology and Evolution},
-  year={2024},
-  publisher={Wiley Online Library}
+@article{chan2025yolo,
+  author = {Chan, Alex Hoi Hang and Putra, Prasetia and Schupp, Harald and Köchling, Johanna and Straßheim, Jana and Renner, Britta and Schroeder, Julia and Pearse, William D. and Nakagawa, Shinichi and Burke, Terry and Griesser, Michael and Meltzer, Andrea and Lubrano, Saverio and Kano, Fumihiro},
+  title = {YOLO-Behaviour: A simple, flexible framework to automatically quantify animal behaviours from videos},
+  journal = {Methods in Ecology and Evolution},
+  volume = {16},
+  number = {4},
+  pages = {760-774},
+  keywords = {animal behaviour, behavioural recognition, computer vision, machine learning},
+  doi = {https://doi.org/10.1111/2041-210X.14502},
+  url = {https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14502},
+  year = {2025}
+}
+
+
 }
 ```
 
